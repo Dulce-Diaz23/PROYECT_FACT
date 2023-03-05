@@ -85,7 +85,7 @@ namespace Vista
 
                 if (string.IsNullOrEmpty(NombreTextBox.Text))
                 {
-                    errorProvider1.SetError(NombreTextBox, "Ingrese un codigo");
+                    errorProvider1.SetError(NombreTextBox, "Ingrese un nombre");
                     NombreTextBox.Focus();
                     return;
                 }
@@ -94,7 +94,7 @@ namespace Vista
 
                 if (string.IsNullOrEmpty(ContrasenaTextBox.Text))
                 {
-                    errorProvider1.SetError(ContrasenaTextBox, "Ingrese un codigo");
+                    errorProvider1.SetError(ContrasenaTextBox, "Ingrese un contrasena");
                     ContrasenaTextBox.Focus();
                     return;
                 }
@@ -103,7 +103,7 @@ namespace Vista
 
                 if (string.IsNullOrEmpty(RolComboBox.Text))
                 {
-                    errorProvider1.SetError(RolComboBox, "Ingrese un código");
+                    errorProvider1.SetError(RolComboBox, "Ingrese un rol");
                     RolComboBox.Focus();
                     return;
                 }
