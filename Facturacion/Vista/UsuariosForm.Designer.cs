@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.CodigoTextBox = new System.Windows.Forms.TextBox();
             this.NombreTextBox = new System.Windows.Forms.TextBox();
@@ -39,7 +40,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.RolComboBox = new System.Windows.Forms.ComboBox();
-            this.EstaActiVoCheckBox = new System.Windows.Forms.CheckBox();
+            this.EstaActivoCheckBox = new System.Windows.Forms.CheckBox();
             this.AdjuntarFotoButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.NuevoButton = new System.Windows.Forms.Button();
@@ -48,8 +49,10 @@
             this.EliminarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
             this.UsuarioDataGridView = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UsuarioDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -91,6 +94,7 @@
             this.ContrasenaTextBox.Enabled = false;
             this.ContrasenaTextBox.Location = new System.Drawing.Point(98, 74);
             this.ContrasenaTextBox.Name = "ContrasenaTextBox";
+            this.ContrasenaTextBox.PasswordChar = '*';
             this.ContrasenaTextBox.Size = new System.Drawing.Size(201, 22);
             this.ContrasenaTextBox.TabIndex = 5;
             // 
@@ -140,6 +144,7 @@
             // 
             // RolComboBox
             // 
+            this.RolComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RolComboBox.Enabled = false;
             this.RolComboBox.FormattingEnabled = true;
             this.RolComboBox.Items.AddRange(new object[] {
@@ -150,15 +155,15 @@
             this.RolComboBox.Size = new System.Drawing.Size(201, 24);
             this.RolComboBox.TabIndex = 12;
             // 
-            // EstaActiVoCheckBox
+            // EstaActivoCheckBox
             // 
-            this.EstaActiVoCheckBox.AutoSize = true;
-            this.EstaActiVoCheckBox.Enabled = false;
-            this.EstaActiVoCheckBox.Location = new System.Drawing.Point(98, 179);
-            this.EstaActiVoCheckBox.Name = "EstaActiVoCheckBox";
-            this.EstaActiVoCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.EstaActiVoCheckBox.TabIndex = 13;
-            this.EstaActiVoCheckBox.UseVisualStyleBackColor = true;
+            this.EstaActivoCheckBox.AutoSize = true;
+            this.EstaActivoCheckBox.Enabled = false;
+            this.EstaActivoCheckBox.Location = new System.Drawing.Point(98, 179);
+            this.EstaActivoCheckBox.Name = "EstaActivoCheckBox";
+            this.EstaActivoCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.EstaActivoCheckBox.TabIndex = 13;
+            this.EstaActivoCheckBox.UseVisualStyleBackColor = true;
             // 
             // AdjuntarFotoButton
             // 
@@ -170,6 +175,7 @@
             this.AdjuntarFotoButton.Size = new System.Drawing.Size(34, 25);
             this.AdjuntarFotoButton.TabIndex = 15;
             this.AdjuntarFotoButton.UseVisualStyleBackColor = false;
+            this.AdjuntarFotoButton.Click += new System.EventHandler(this.AdjuntarFotoButton_Click);
             // 
             // pictureBox1
             // 
@@ -177,6 +183,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(357, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(139, 118);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
@@ -190,6 +197,7 @@
             this.NuevoButton.TabIndex = 16;
             this.NuevoButton.Text = "Nuevo";
             this.NuevoButton.UseVisualStyleBackColor = false;
+            this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
             // 
             // ModificarButton
             // 
@@ -202,6 +210,7 @@
             this.ModificarButton.TabIndex = 17;
             this.ModificarButton.Text = "Modificar";
             this.ModificarButton.UseVisualStyleBackColor = false;
+            this.ModificarButton.Click += new System.EventHandler(this.ModificarButton_Click);
             // 
             // GuardarButton
             // 
@@ -214,6 +223,7 @@
             this.GuardarButton.TabIndex = 18;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.UseVisualStyleBackColor = false;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // EliminarButton
             // 
@@ -238,6 +248,7 @@
             this.CancelarButton.TabIndex = 20;
             this.CancelarButton.Text = "Cancelar";
             this.CancelarButton.UseVisualStyleBackColor = false;
+            this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
             // UsuarioDataGridView
             // 
@@ -246,6 +257,10 @@
             this.UsuarioDataGridView.Name = "UsuarioDataGridView";
             this.UsuarioDataGridView.Size = new System.Drawing.Size(631, 150);
             this.UsuarioDataGridView.TabIndex = 21;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // UsuariosForm
             // 
@@ -260,7 +275,7 @@
             this.Controls.Add(this.NuevoButton);
             this.Controls.Add(this.AdjuntarFotoButton);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.EstaActiVoCheckBox);
+            this.Controls.Add(this.EstaActivoCheckBox);
             this.Controls.Add(this.RolComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -273,11 +288,12 @@
             this.Controls.Add(this.CodigoTextBox);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UsuariosForm";
             this.Text = "Usuarios";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UsuarioDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,7 +312,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox RolComboBox;
-        private System.Windows.Forms.CheckBox EstaActiVoCheckBox;
+        private System.Windows.Forms.CheckBox EstaActivoCheckBox;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button AdjuntarFotoButton;
         private System.Windows.Forms.Button NuevoButton;
@@ -305,5 +321,6 @@
         private System.Windows.Forms.Button EliminarButton;
         private System.Windows.Forms.Button CancelarButton;
         private System.Windows.Forms.DataGridView UsuarioDataGridView;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
