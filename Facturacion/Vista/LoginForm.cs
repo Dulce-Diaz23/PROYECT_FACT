@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 
+
+
+
 namespace Vista
 {
-    public partial class Login : Form
+    public partial class LoginForm : Form
     {
-        public Login()
+        public LoginForm()
         {
             InitializeComponent();
         }
@@ -26,13 +29,19 @@ namespace Vista
 
             if (ContrasenaTextBox.Text == "")
             {
-
                 errorProvider1.SetError(ContrasenaTextBox, "Ingrese una contrasena");
                 UsuarioTextBox.Focus();
                 return;
             }
 
             errorProvider1.Clear();
+
+            //Validar en BD
+
+            //Login login = new Login(UsuarioTextBox.Text, ContrasenaTextBox.Text);
+            //Usuario usuario = new Usuario();
+            //UsuarioDB
+
 
             Menu menuFormulario = new Menu();
             Hide(); //Oculta formulario 
