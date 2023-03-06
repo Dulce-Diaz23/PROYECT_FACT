@@ -170,6 +170,10 @@
     <None Include="Resources\buscar.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{7CECC145-F842-4259-A3FE-F15353E24752}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{E6B1E9BD-38D2-4C98-B24B-32F73EFD7D58}</Project>
       <Name>Entidades</Name>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Datos;
+using Entidades;
+using System;
 using System.Windows.Forms;
 
 
@@ -38,9 +40,9 @@ namespace Vista
 
             //Validar en BD
 
-            //Login login = new Login(UsuarioTextBox.Text, ContrasenaTextBox.Text);
-            //Usuario usuario = new Usuario();
-            //UsuarioDB
+            Login login = new Login(UsuarioTextBox.Text, ContrasenaTextBox.Text);
+            Usuario usuario = new Usuario();
+            UsuarioDB usuarioDB = new UsuarioDB();
 
 
             Menu menuFormulario = new Menu();
