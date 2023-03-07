@@ -44,10 +44,30 @@ namespace Vista
             Usuario usuario = new Usuario();
             UsuarioDB usuarioDB = new UsuarioDB();
 
+            usuario = usuarioDB.Autenticar(login);
 
-            Menu menuFormulario = new Menu();
-            Hide(); //Oculta formulario 
-            menuFormulario.Show();
+            if (usuario != null)
+            {
+                if (usuario.EstaActivo)
+                {
+                    //mostrar menu
+                    Menu menuFormulario = new Menu();
+                    Hide(); //Oculta formulario 
+                    menuFormulario.Show();
+                }
+                else
+                {
+                    MessageBox.Show("El usuario no esta activo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Datos de usuario incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
 
         }
 

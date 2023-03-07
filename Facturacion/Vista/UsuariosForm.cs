@@ -1,4 +1,6 @@
-﻿using Entidades;
+﻿using Datos;
+using Entidades;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,9 +12,10 @@ namespace Vista
         public UsuariosForm()
         {
             InitializeComponent();
-
-
         }
+
+        DataTable dt = new DataTable();   //recibe metodo devolver usuario
+        UsuarioDB UsuarioDB = new UsuarioDB();     // ejecutar de varias partes
 
         private void NuevoButton_Click(object sender, System.EventArgs e)
         {
@@ -129,6 +132,16 @@ namespace Vista
 
                 //Insertar en BD
 
+                bool inserto = UsuarioDB.Insertar(user);
+                if (inserto)
+                {
+                    MessageBox.Show("Registro guardado");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo guardar el registro");
+                }
+
             }
             else if (tipoOperacion == "Modificar")
             {
@@ -152,7 +165,17 @@ namespace Vista
             }
         }
 
+        private void UsuariosForm_Load(object sender, System.EventArgs e)
+        {
+            TraerUsuario();
 
+        }
+
+        private void TraerUsuario()
+        {
+            dt = UsuarioDB.DevolverUsuarios();
+            UsuarioDataGridView.DataSource = dt;
+        }
     }
 
 }
