@@ -202,7 +202,6 @@
             // ModificarButton
             // 
             this.ModificarButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ModificarButton.Enabled = false;
             this.ModificarButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ModificarButton.Location = new System.Drawing.Point(208, 238);
             this.ModificarButton.Name = "ModificarButton";
@@ -228,7 +227,6 @@
             // EliminarButton
             // 
             this.EliminarButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.EliminarButton.Enabled = false;
             this.EliminarButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.EliminarButton.Location = new System.Drawing.Point(370, 238);
             this.EliminarButton.Name = "EliminarButton";
@@ -236,6 +234,7 @@
             this.EliminarButton.TabIndex = 19;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.UseVisualStyleBackColor = false;
+            this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
             // CancelarButton
             // 

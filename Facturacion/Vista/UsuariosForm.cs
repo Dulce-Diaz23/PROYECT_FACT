@@ -1,7 +1,9 @@
 ﻿using Datos;
 using Entidades;
+using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Vista
@@ -43,6 +45,7 @@ namespace Vista
             AdjuntarFotoButton.Enabled = true;
             GuardarButton.Enabled = true;
             CancelarButton.Enabled = true;
+            ModificarButton.Enabled = false;
 
         }
 
@@ -57,6 +60,7 @@ namespace Vista
             AdjuntarFotoButton.Enabled = false;
             GuardarButton.Enabled = false;
             CancelarButton.Enabled = false;
+            ModificarButton.Enabled = true;
 
         }
 
@@ -75,8 +79,10 @@ namespace Vista
 
         private void GuardarButton_Click(object sender, System.EventArgs e)
         {
+            Usuario user = new Usuario();
             if (tipoOperacion == "Nuevo")
             {
+
                 if (string.IsNullOrEmpty(CodigoTextBox.Text))
                 {
                     errorProvider1.SetError(CodigoTextBox, "Ingrese un código");
@@ -113,7 +119,7 @@ namespace Vista
 
                 errorProvider1.Clear();
 
-                Usuario user = new Usuario();
+
 
                 user.CodigoUsuario = CodigoTextBox.Text;
                 user.Nombre = NombreTextBox.Text;
@@ -133,8 +139,13 @@ namespace Vista
                 //Insertar en BD
 
                 bool inserto = UsuarioDB.Insertar(user);
+
                 if (inserto)
                 {
+                    LimpiarControles();
+                    DesabilitarControles();
+                    TraerUsuario();
+
                     MessageBox.Show("Registro guardado");
                 }
                 else
@@ -145,13 +156,62 @@ namespace Vista
             }
             else if (tipoOperacion == "Modificar")
             {
+                user.CodigoUsuario = CodigoTextBox.Text;
+                user.Nombre = NombreTextBox.Text;
+                user.Contrasena = ContrasenaTextBox.Text;
+                user.Rol = RolComboBox.Text;
+                user.Correo = CorreoTextBox.Text;
+                user.EstaActivo = EstaActivoCheckBox.Checked;
 
+                if (pictureBox1.Image != null)
+                {
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream();
+
+                    pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png); // pasa la fotografia a MemorySream
+                    user.Foto = ms.GetBuffer();
+                }
+
+                bool modifico = UsuarioDB.Editar(user);
+                if (modifico)
+                {
+                    LimpiarControles();
+                    DesabilitarControles();
+                    TraerUsuario();
+                    MessageBox.Show("Registro actualizado correctamente");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo modificar el registro");
+                }
             }
         }
 
         private void ModificarButton_Click(object sender, System.EventArgs e)
         {
             tipoOperacion = "Modificar";  //identificar si es para modificar o nuevo
+
+            if (UsuarioDataGridView.SelectedRows.Count > 0)       //Validar para que al querer modificar un usuario se seleccione un registro
+            {
+                CodigoTextBox.Text = UsuarioDataGridView.CurrentRow.Cells["CodigoUsuario"].Value.ToString();
+                NombreTextBox.Text = UsuarioDataGridView.CurrentRow.Cells["Nombre"].Value.ToString();
+                ContrasenaTextBox.Text = UsuarioDataGridView.CurrentRow.Cells["Contrasena"].Value.ToString();
+                CorreoTextBox.Text = UsuarioDataGridView.CurrentRow.Cells["Correo"].Value.ToString();
+                RolComboBox.Text = UsuarioDataGridView.CurrentRow.Cells["Rol"].Value.ToString();
+                EstaActivoCheckBox.Checked = Convert.ToBoolean(UsuarioDataGridView.CurrentRow.Cells["EstaActivo"].Value);
+
+                byte[] MiFoto = UsuarioDB.DevolverFoto(UsuarioDataGridView.CurrentRow.Cells["CodigoUsuario"].Value.ToString());
+
+                if (MiFoto.Length > 0)       // valida si usuario no tiene fotografia registrada devuelve cero
+                {
+                    MemoryStream ms = new MemoryStream(MiFoto);
+                    pictureBox1.Image = System.Drawing.Bitmap.FromStream(ms);
+                }
+                HabilitarControles();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un registro");
+            }
         }
 
         private void AdjuntarFotoButton_Click(object sender, System.EventArgs e)
@@ -175,6 +235,27 @@ namespace Vista
         {
             dt = UsuarioDB.DevolverUsuarios();
             UsuarioDataGridView.DataSource = dt;
+        }
+
+        private void EliminarButton_Click(object sender, EventArgs e)
+        {
+            if (UsuarioDataGridView.SelectedRows.Count > 0)       //Validar para que al querer modificar un usuario se seleccione un registro
+            {
+                DialogResult resultado = MessageBox.Show("Esta seguro de eliminar registro?", "Advertencia", MessageBoxButtons.YesNo);
+
+                bool elimino = UsuarioDB.Eliminar(UsuarioDataGridView.CurrentRow.Cells["CodigoUsuario"].Value.ToString());
+                if (elimino)
+                {
+                    LimpiarControles();
+                    DesabilitarControles();
+                    TraerUsuario();
+                    MessageBox.Show("Registro eliminado");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo eliminar el registro");
+            }
         }
     }
 
