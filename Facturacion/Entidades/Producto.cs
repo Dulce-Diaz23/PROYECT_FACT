@@ -2,24 +2,28 @@
 {
     public class Producto
     {
+        public byte[] Foto;
         public string Codigo { get; set; }
         public string Descripcion { get; set; }
         public int Existencia { get; set; }
         public decimal Precio { get; set; }
-        public string[] Imagen { get; set; }
+        public byte[] foto { get; set; }
+        public bool EstaActivo { get; set; }
+
 
         public Producto()
         {
 
         }
 
-        public Producto(string codigo, string descripcion, int existencia, decimal precio, string[] imagen)
+        public Producto(string codigo, string descripcion, int existencia, decimal precio, byte[] foto, bool estaActivo)
         {
             Codigo = codigo;
             Descripcion = descripcion;
             Existencia = existencia;
             Precio = precio;
-            Imagen = imagen;
+            this.foto = foto;
+            EstaActivo = estaActivo;
         }
     }
 
