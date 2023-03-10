@@ -99,18 +99,18 @@ namespace Datos
         public bool Editar(Usuario user)           //ERROR
         {
             bool edito = false;
-            try                                                   //Capaturar errores, evitar error inesperado
+            try                                                   //Capturar errores, evitar error inesperado
             {
                 StringBuilder sql = new StringBuilder();        //genera sentencias de SQL
-                sql.Append("UPDATE usuario SET ");
-                sql.Append("CodigoUsuario = @CodigoUsuario, Nombre = @Nombre, Contrasena = @Contrasena, Rol = @Rol, EstaActivo= @EstaActivo, Correo = @Correo, Foto = @Foto");
-                sql.Append("WHERE CodigoUsuario = @CodigoUsuario;"); // indica que ususario se va a modificar
-
+                sql.Append("UPDATE  usuario SET ");
+                sql.Append("  Nombre = @Nombre, Contrasena = @Contrasena, Rol = @Rol,EstaActivo = @EstaActivo, Correo = @Correo, Foto=@Foto");
+                sql.Append(" WHERE CodigoUsuario = @CodigoUsuario;");
                 using (MySqlConnection _conexion = new MySqlConnection(cadena))
                 {
                     _conexion.Open();
                     using (MySqlCommand comando = new MySqlCommand(sql.ToString(), _conexion))
                     {
+
                         comando.CommandType = CommandType.Text;
                         comando.Parameters.Add("@CodigoUsuario", MySqlDbType.VarChar, 50).Value = user.CodigoUsuario;
                         comando.Parameters.Add("@Nombre", MySqlDbType.VarChar, 50).Value = user.Nombre;
@@ -136,21 +136,22 @@ namespace Datos
         public bool Eliminar(string codigoUsuario)
         {
             bool elimino = false;
-            try                                                   //Capaturar errores, evitar error inesperado
+            try                                                   //Capturar errores, evitar error inesperado
             {
                 StringBuilder sql = new StringBuilder();        //genera sentencias de SQL
-                sql.Append("DELETE FROM usuario");
-                sql.Append("WHERE CodigoUsuario = @CodigoUsuario"); // indica que ususario se va a modificar
-
+                sql.Append("DELETE FROM usuario ");
+                sql.Append(" WHERE CodigoUsuario = @CodigoUsuario;");
                 using (MySqlConnection _conexion = new MySqlConnection(cadena))
                 {
                     _conexion.Open();
                     using (MySqlCommand comando = new MySqlCommand(sql.ToString(), _conexion))
                     {
+
                         comando.CommandType = CommandType.Text;
                         comando.Parameters.Add("@CodigoUsuario", MySqlDbType.VarChar, 50).Value = codigoUsuario;
                         comando.ExecuteNonQuery();
                         elimino = true;
+
                     }
                 }
             }
