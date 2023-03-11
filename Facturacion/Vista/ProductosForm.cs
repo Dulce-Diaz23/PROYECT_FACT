@@ -16,7 +16,7 @@ namespace Vista
         }
 
         string operacion;
-        Producto producto = new Producto();
+        Producto producto;
         ProductoDB productoDB = new ProductoDB();
         DataTable dt = new DataTable();
 
@@ -41,6 +41,7 @@ namespace Vista
             PrecioTextBox.Clear();
             EstaActivoCheckBox.Checked = false;
             ImagenPictureBox.Image = null;
+            producto = null;
         }
 
         private void HabilitarControles()
@@ -74,7 +75,7 @@ namespace Vista
             if (ProductoDataGridView.SelectedRows.Count > 0)
             {
                 CodigoTextBox.Text = ProductoDataGridView.CurrentRow.Cells["Codigo"].Value.ToString();
-                DescripcionTextBox.Text = ProductoDataGridView.CurrentRow.Cells["Descrpcion"].Value.ToString();
+                DescripcionTextBox.Text = ProductoDataGridView.CurrentRow.Cells["Descripcion"].Value.ToString();
                 ExistenciaTextBox.Text = ProductoDataGridView.CurrentRow.Cells["Existencia"].Value.ToString();
                 PrecioTextBox.Text = ProductoDataGridView.CurrentRow.Cells["Precio"].Value.ToString();
                 EstaActivoCheckBox.Checked = Convert.ToBoolean(ProductoDataGridView.CurrentRow.Cells["EstaActivo"].Value);
@@ -98,6 +99,8 @@ namespace Vista
 
         private void GuardarButton_Click(object sender, System.EventArgs e)
         {
+
+            producto = new Producto();
             producto.Codigo = CodigoTextBox.Text;                     //se utiliza para nuevo y modificar y asi no se duplica
             producto.Descripcion = DescripcionTextBox.Text;
             producto.Precio = Convert.ToDecimal(PrecioTextBox.Text);
@@ -168,6 +171,7 @@ namespace Vista
 
                 if (modifico)
                 {
+                    CodigoTextBox.ReadOnly = false;   // bloquea el codigo ingresado, pero permite seleccionar dicho codigo
                     DesabilitarControles();
                     LimpiarControles();
                     TraerProductos();

@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 using System.Text;
 
@@ -55,7 +56,7 @@ namespace Datos
             {
                 StringBuilder sql = new StringBuilder();        //genera sentencias de SQL
                 sql.Append("UPDATE  producto SET ");
-                sql.Append("  Descrpcion = @Descrpcion, Existencia = @Existencia, Precio = @Precio, Foto=@Foto, EstaActivo = @EstaActivo");
+                sql.Append("  Descripcion = @Descripcion, Existencia = @Existencia, Precio = @Precio, Foto=@Foto, EstaActivo = @EstaActivo");
                 sql.Append(" WHERE Codigo = @Codigo;");
                 using (MySqlConnection _conexion = new MySqlConnection(cadena))
                 {
@@ -65,7 +66,7 @@ namespace Datos
 
                         comando.CommandType = CommandType.Text;
                         comando.Parameters.Add("@Codigo", MySqlDbType.VarChar, 80).Value = producto.Codigo;
-                        comando.Parameters.Add("@Descrpcion", MySqlDbType.VarChar, 200).Value = producto.Descripcion;
+                        comando.Parameters.Add("@Descripcion", MySqlDbType.VarChar, 200).Value = producto.Descripcion;
                         comando.Parameters.Add("@Existencia", MySqlDbType.Int32).Value = producto.Existencia;
                         comando.Parameters.Add("@Precio", MySqlDbType.Decimal).Value = producto.Precio;
                         comando.Parameters.Add("@Foto", MySqlDbType.LongBlob).Value = producto.Foto;
@@ -168,6 +169,42 @@ namespace Datos
 
             }
             return foto;
+        }
+
+        public Producto DevolverProductoPorCodigo(string codigo)
+        {
+            Producto producto = null;
+            try                                                   //Capaturar errores, evitar error inesperado
+            {
+                StringBuilder sql = new StringBuilder();        //genera sentencias de SQL
+                sql.Append("SELECT * FROM producto WHERE Codigo = @Codigo");
+                using (MySqlConnection _conexion = new MySqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (MySqlCommand comando = new MySqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        MySqlDataReader dr = comando.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            producto = new Producto();
+
+                            producto.Codigo = codigo;
+                            producto.Descripcion = dr["Descripcion"].ToString();
+                            producto.Existencia = Convert.ToInt32(dr["Existencia"]);
+                            producto.Precio = Convert.ToDecimal(dr["Precio"]);
+                            producto.EstaActivo = Convert.ToBoolean(dr["Esta Activo"]);
+
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+
+            return producto;
         }
     }
 }
