@@ -24,5 +24,12 @@ namespace Vista
             productosForm.MdiParent = this; // abrir formulario de la pestana dentro del formulario principal
             productosForm.Show();
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            ClientesForm productosForm = new ClientesForm();
+            productosForm.MdiParent = this; // abrir formulario de la pestana dentro del formulario principal
+            productosForm.Show();
+        }
     }
 }
