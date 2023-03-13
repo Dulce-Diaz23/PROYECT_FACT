@@ -100,7 +100,6 @@ namespace Vista
                 errorProvider1.Clear();
 
 
-
                 if (string.IsNullOrEmpty(TelefonoClienteTextBox.Text))
                 {
                     errorProvider1.SetError(TelefonoClienteTextBox, "Ingrese un numero telefonico");
@@ -117,8 +116,6 @@ namespace Vista
                     return;
                 }
                 errorProvider1.Clear();
-
-
 
                 cliente.Identidad = IdentidadClienteTextBox.Text;
                 cliente.Nombre = NombreClienteTextBox.Text;

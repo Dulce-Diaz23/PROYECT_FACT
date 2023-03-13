@@ -82,7 +82,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Telefono:";
+            this.label3.Text = "Teléfono:";
             // 
             // label4
             // 
@@ -102,7 +102,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 16);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Direccion:";
+            this.label5.Text = "Dirección:";
             // 
             // label6
             // 
@@ -110,14 +110,14 @@
             this.label6.Location = new System.Drawing.Point(7, 188);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 16);
+            this.label6.Size = new System.Drawing.Size(88, 16);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Esta Activo:";
+            this.label6.Text = "¿Está Activo?";
             // 
             // IdentidadClienteTextBox
             // 
             this.IdentidadClienteTextBox.Enabled = false;
-            this.IdentidadClienteTextBox.Location = new System.Drawing.Point(134, 19);
+            this.IdentidadClienteTextBox.Location = new System.Drawing.Point(134, 16);
             this.IdentidadClienteTextBox.Name = "IdentidadClienteTextBox";
             this.IdentidadClienteTextBox.Size = new System.Drawing.Size(250, 22);
             this.IdentidadClienteTextBox.TabIndex = 6;
@@ -211,7 +211,7 @@
             this.CancelarButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.CancelarButton.Enabled = false;
             this.CancelarButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.CancelarButton.Image = global::Vista.Properties.Resources.cancelar;
+            this.CancelarButton.Image = global::Vista.Properties.Resources.cancelar__1_;
             this.CancelarButton.Location = new System.Drawing.Point(336, 219);
             this.CancelarButton.Name = "CancelarButton";
             this.CancelarButton.Size = new System.Drawing.Size(45, 34);
@@ -236,7 +236,7 @@
             this.GuardarButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.GuardarButton.Enabled = false;
             this.GuardarButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.GuardarButton.Image = global::Vista.Properties.Resources.ahorrar;
+            this.GuardarButton.Image = global::Vista.Properties.Resources.ahorrar__1_;
             this.GuardarButton.Location = new System.Drawing.Point(238, 219);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(44, 34);

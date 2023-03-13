@@ -83,6 +83,16 @@ namespace Vista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ahorrar__1_ {
+            get {
+                object obj = ResourceManager.GetObject("ahorrar (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap atencion_al_cliente {
             get {
                 object obj = ResourceManager.GetObject("atencion-al-cliente", resourceCulture);
@@ -126,6 +136,16 @@ namespace Vista.Properties {
         internal static System.Drawing.Bitmap cancelar {
             get {
                 object obj = ResourceManager.GetObject("cancelar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cancelar__1_ {
+            get {
+                object obj = ResourceManager.GetObject("cancelar (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
